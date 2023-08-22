@@ -17,3 +17,35 @@ model Admin {
 
   @@map("admins")
 }
+
+model Course {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  description String
+  image       String
+  category    Category     @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  professor   Professor    @relation(fields: [professorId], references: [id])
+  professorId Int
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  @@map("courses")
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  courses   Course[]
+  @@map("categories")
+}
+
+model Professor {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  courses   Course[]
+  @@map("professors")
+}
