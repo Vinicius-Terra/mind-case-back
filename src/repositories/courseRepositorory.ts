@@ -1,12 +1,17 @@
 import { prisma } from '../config/database';
 import { Course } from '@prisma/client';
 
-// remove id from Course
-export type CourseData = Omit<Course, "id">
+// remove id,createdAt and updateAt from Course
+export type CourseData = Omit<Course, "id" | "createdAt" | "updatedAt">
 
-
+//get all courses and the professor and category name
 export async function getAllCourses() {
-    return prisma.course.findMany();
+    return prisma.course.findMany({
+        include: {
+            professor: true,
+            category: true
+        }
+    });
 }
 
 export async function insertCourse(course: CourseData) {
@@ -32,6 +37,16 @@ export async function deleteCourse(id: number) {
 
 export async function getCourseByName(name: string) {
     return prisma.course.findUnique({
-        where: { name }
+        where: { name },
+        include: {
+            professor: true,
+            category: true
+        }
+    });
+}
+
+export async function getCourseById(id: number) {
+    return prisma.course.findUnique({
+        where: { id }
     });
 }

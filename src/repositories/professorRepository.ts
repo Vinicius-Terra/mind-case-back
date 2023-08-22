@@ -1,8 +1,10 @@
+import e from 'cors';
 import { prisma } from '../config/database';
 import { Professor } from '@prisma/client';
 
-// remove id from Professor
-export type ProfessorData = Omit<Professor, "id">
+// remove id,createdAt and updateAt from Professor
+
+export type ProfessorData = Omit<Professor, "id" | "createdAt" | "updatedAt">
 
 export async function getAllProfessors() {
     return prisma.professor.findMany();
@@ -32,5 +34,12 @@ export async function getProfessorByName(name: string) {
         where: { name }
     });
 }
+
+export async function getProfessorById(id: number) {
+    return prisma.professor.findUnique({
+        where: { id }
+    });
+}
+
 
 

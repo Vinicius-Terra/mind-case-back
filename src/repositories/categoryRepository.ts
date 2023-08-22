@@ -1,8 +1,8 @@
 import { prisma } from '../config/database';
 import { Category } from '@prisma/client';
 
-// remove id from Category
-export type CategoryData = Omit<Category, "id">
+// remove id,createdAt and updateAt from Category
+export type CategoryData = Omit<Category, "id" | "createdAt" | "updatedAt">
 
 export async function getAllCategories() {
     return prisma.category.findMany();
@@ -30,6 +30,12 @@ export async function deleteCategory(id: number) {
 export async function getCategoryByName(name: string) {
     return prisma.category.findUnique({
         where: { name }
+    });
+}
+
+export async function getCategoryById(id: number) {
+    return prisma.category.findUnique({
+        where: { id }
     });
 }
 
