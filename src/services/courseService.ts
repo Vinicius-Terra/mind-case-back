@@ -6,8 +6,8 @@ import * as professorRepository from "../repositories/professorRepository";
 // import error utils
 import { conflictError, notFoundError } from "../utils/errorUtils";
 
-// remove caregorieId and professorId from CourseData
-export type CourseDataImput = Omit<CourseData, "categoryId" | "professorId">;
+// remove caregorieId and professorId from CourseData, and add professorName and categoryName
+export type CourseDataImput = Omit<CourseData, "categoryId" | "professorId"> & { professorName: string, categoryName: string };
 
 async function getAllCourses() {
     return courseRepository.getAllCourses();
@@ -20,10 +20,10 @@ async function getCourseByName(name: string) {
     return course;
 }
 
-async function createCourse(course: CourseDataImput, professorName: string, categoryName: string) {
+async function createCourse(course: CourseDataImput) {
     const existingCourse = await courseRepository.getCourseByName(course.name);
-    const existingProfessor = await professorRepository.getProfessorByName(professorName);
-    const existingCategory = await categoryRepository.getCategoryByName(categoryName);
+    const existingProfessor = await professorRepository.getProfessorByName(course.professorName);
+    const existingCategory = await categoryRepository.getCategoryByName(course.categoryName);
 
     if (existingCourse) {
         throw conflictError("There is a conflict");
@@ -37,14 +37,28 @@ async function createCourse(course: CourseDataImput, professorName: string, cate
         throw notFoundError("Category not found");
     }
 
-    await courseRepository.insertCourse({...course, categoryId: existingCategory.id, professorId: existingProfessor.id});
+    const newCourse : CourseData = {name: course.name, description: course.description, image: course.image, categoryId: existingCategory.id, professorId: existingProfessor.id}
+    await courseRepository.insertCourse(newCourse);
 }
 
-async function updateCourse(course: CourseDataImput, professorName: string, categoryName: string) {
-    const existingCourse = await courseRepository.getCourseByName(course.name);
-    const existingProfessor = await professorRepository.getProfessorByName(professorName);
-    const existingCategory = await categoryRepository.getCategoryByName(categoryName);
+async function updateCourse(course: CourseDataImput, id: number) {
 
+    if(isNaN(id)){
+        throw notFoundError("Invalid id");
+    }
+    
+    const existingProfessor = await professorRepository.getProfessorByName(course.professorName);
+    const existingCategory = await categoryRepository.getCategoryByName(course.categoryName);
+    const conflictExistingCourse = await courseRepository.getCourseByName(course.name);
+    const existingCourse = await courseRepository.getCourseById(id);
+
+    if (!existingCourse) {
+        throw notFoundError("Course not found");
+    }
+
+    if (conflictExistingCourse) {
+        throw conflictError("Course name must be unique");
+    }
 
     if (!existingProfessor) {
         throw notFoundError("Professor not found");
@@ -53,13 +67,20 @@ async function updateCourse(course: CourseDataImput, professorName: string, cate
     if (!existingCategory) {
         throw notFoundError("Category not found");
     }
+
+    const newCourseData : CourseData = {name: course.name, description: course.description, image: course.image, categoryId: existingCategory.id, professorId: existingProfessor.id}
     await courseRepository.updateCourse(
-        {...course, categoryId: existingCategory.id, professorId: existingProfessor.id}
-        ,existingCourse.id);
+        newCourseData,
+        id);
 }
 
-async function deleteCourse(name: string) {
-    const existingCourse = await courseRepository.getCourseByName(name);
+async function deleteCourse(id: number) {
+
+    if(isNaN(id)){
+        throw notFoundError("Invalid id");
+    }
+
+    const existingCourse = await courseRepository.getCourseById(id);
 
     if (!existingCourse) {
         throw notFoundError("Course not found");
@@ -75,4 +96,6 @@ const courseService = {
     updateCourse,
     deleteCourse,
 };
+
+export { courseService };
 
