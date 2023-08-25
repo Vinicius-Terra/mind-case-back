@@ -45,7 +45,7 @@ async function deleteProfessor(name: string) {
     await professorRepository.deleteProfessor(existingProfessor.id);
 }
 
-const professorService = {
+export const professorService = {
     getAllProfessors,
     getProfessorByName,
     createProfessor,

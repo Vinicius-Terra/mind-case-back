@@ -45,7 +45,7 @@ async function deleteCategory(name: string) {
     await categoryRepository.deleteCategory(existingCategory.id);
 }
 
-const categoryService = {
+export const categoryService = {
     getAllCategories,
     getCategoryByName,
     createCategory,

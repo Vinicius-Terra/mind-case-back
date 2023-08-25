@@ -30,6 +30,7 @@ export async function updateCourse(req: Request, res: Response) {
 
 export async function deleteCourse(req: Request, res: Response) {
     const id = parseInt(req.params.id);
+    console.log(id);
     await courseService.deleteCourse(id);
     res.sendStatus(200);
 }
