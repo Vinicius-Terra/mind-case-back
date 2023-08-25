@@ -1,0 +1,214 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "mind-case",
+    "dateExported": "2023-08-25T11:24:02.383Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "1cd9e08c-0d2b-4b0b-8605-77956b42b7c4",
+            "name": "auth",
+            "containerId": "",
+            "created": "2023-08-23T23:30:57.763Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "2be193d6-7b56-46cf-97b7-21ebd6e7764a",
+            "name": "course",
+            "containerId": "",
+            "created": "2023-08-23T23:31:03.318Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "267c516b-ceaa-4502-ba38-f32ba835ad1b",
+            "name": "professors",
+            "containerId": "",
+            "created": "2023-08-25T11:20:25.047Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "7ec1a6b1-8425-4e21-8c5d-2fb24dfebfb4",
+            "name": "categories",
+            "containerId": "",
+            "created": "2023-08-25T11:21:30.922Z",
+            "sortNum": 40000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "173d75a5-25e8-4241-ac08-837d18314769",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "1cd9e08c-0d2b-4b0b-8605-77956b42b7c4",
+            "name": "signUp",
+            "url": "http://localhost:5000/signup",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-08-23T23:30:57.764Z",
+            "modified": "2023-08-23T23:43:36.427Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\t\"email\": \"teste@teste.com\",\n\t\"password\": \"0123456789\",\n\t\"confirmPassword\": \"0123456789\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "003919db-39d7-48a1-ba7e-9404b927ab6b",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "2be193d6-7b56-46cf-97b7-21ebd6e7764a",
+            "name": "create",
+            "url": "http://localhost:5000/courses",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-08-23T23:31:03.318Z",
+            "modified": "2023-08-23T23:44:43.670Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Calculo 1\",\n  \"categoryName\": \"Matematica\",\n  \"professorName\": \"João Mesa\",\n  \"image\": \"https://img.freepik.com/fotos-gratis/quadro-negro-inscrito-com-formulas-e-calculos-cientificos_1150-19413.jpg?q=10&h=200\",\n  \"description\": \"Derivadas e Integrais\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjgzNDIzOX0.CUVvD2gfk8gYs2aEXP7FpVZodosjlkgU34SNF13PhVc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "ba36a57e-7610-4696-a3cc-669509a77a2c",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "267c516b-ceaa-4502-ba38-f32ba835ad1b",
+            "name": "getAll",
+            "url": "http://localhost:5000/professors",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-08-25T11:20:40.686Z",
+            "modified": "2023-08-25T11:20:58.674Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4e99958b-0d0c-44ea-8673-024837b38837",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "7ec1a6b1-8425-4e21-8c5d-2fb24dfebfb4",
+            "name": "getAll ",
+            "url": "http://localhost:5000/categories",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-08-25T11:21:35.360Z",
+            "modified": "2023-08-25T11:21:59.984Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "755b2d95-d5a8-407a-bdd5-d0ac79fc0cdb",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "2be193d6-7b56-46cf-97b7-21ebd6e7764a",
+            "name": "delete",
+            "url": "http://localhost:5000/courses/6",
+            "method": "DELETE",
+            "sortNum": 12500,
+            "created": "2023-08-24T00:17:36.379Z",
+            "modified": "2023-08-25T11:16:09.139Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjgzNDIzOX0.CUVvD2gfk8gYs2aEXP7FpVZodosjlkgU34SNF13PhVc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "861c6c63-ada4-436a-b443-d45eb0097a70",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "2be193d6-7b56-46cf-97b7-21ebd6e7764a",
+            "name": "update",
+            "url": "http://localhost:5000/courses/6",
+            "method": "PUT",
+            "sortNum": 15000,
+            "created": "2023-08-24T00:02:32.002Z",
+            "modified": "2023-08-25T11:15:12.683Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Calculo 2\",\n  \"categoryName\": \"Matematica\",\n  \"professorName\": \"João Mesa\",\n  \"image\": \"https://img.freepik.com/fotos-gratis/quadro-negro-inscrito-com-formulas-e-calculos-cientificos_1150-19413.jpg?q=10&h=200\",\n  \"description\": \"Derivadas e Integrais e ED0\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjgzNDIzOX0.CUVvD2gfk8gYs2aEXP7FpVZodosjlkgU34SNF13PhVc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "75cb6599-65c2-4005-97ff-a80b88736594",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "1cd9e08c-0d2b-4b0b-8605-77956b42b7c4",
+            "name": "signIn",
+            "url": "http://localhost:5000/signin",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-08-23T23:30:57.764Z",
+            "modified": "2023-08-23T23:43:59.185Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\t\"email\": \"teste@teste.com\",\n  \"password\": \"0123456789\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "34cdb358-feca-4b86-b0f7-546fa5b91b58",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "2be193d6-7b56-46cf-97b7-21ebd6e7764a",
+            "name": "getAll",
+            "url": "http://localhost:5000/courses",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-08-23T23:31:03.319Z",
+            "modified": "2023-08-23T23:39:38.223Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4d8b38c3-7f6b-4151-9a28-a4753224ef29",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "2be193d6-7b56-46cf-97b7-21ebd6e7764a",
+            "name": "getByName",
+            "url": "http://localhost:5000/courses/Biologia 1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-08-23T23:59:22.321Z",
+            "modified": "2023-08-25T11:05:02.460Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "75f720a4-2db5-4008-adae-5772386ddea8",
+            "colId": "e16f0465-4075-40c9-96b8-4d4ef9bc4de7",
+            "containerId": "1cd9e08c-0d2b-4b0b-8605-77956b42b7c4",
+            "name": "isAuth",
+            "url": "http://localhost:5000/isauth",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-08-25T05:17:09.393Z",
+            "modified": "2023-08-25T05:17:23.270Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MjgzNDIzOX0.CUVvD2gfk8gYs2aEXP7FpVZodosjlkgU34SNF13PhVc"
+            },
+            "tests": []
+        }
+    ]
+}
